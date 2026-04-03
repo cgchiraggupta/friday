@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme {
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 16px;
+
+    /* Deep dark background with high contrast foreground */
+    --color-background: #030005;
+    --color-foreground: #ffffff;
+
+    /* Slightly lighter dark for cards */
+    --color-card: #0a0a0c;
+    --color-card-foreground: #ffffff;
+
+    /* Primary vibrant pink/magenta */
+    --color-primary: #ff007f;
+    --color-primary-foreground: #ffffff;
+
+    /* Secondary sleek dark grey */
+    --color-secondary: #111113;
+    --color-secondary-foreground: #ffffff;
+
+    /* Muted elements */
+    --color-muted: #18181b;
+    --color-muted-foreground: #a1a1aa;
+
+    /* Accent vibrant purple */
+    --color-accent: #7d00ff;
+    --color-accent-foreground: #ffffff;
+
+    --color-destructive: #ef4444;
+    --color-border: #1f1f22;
+    --color-input: #1f1f22;
+    --color-ring: #ff007f;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--font-sans);
+        font-size: 14px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        /* Clean, modern scrollbar */
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-border) transparent;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+        border-radius: 10px;
+    }
+}
+
+@layer utilities {
+    /* Subtle grid background for the "new age fintech" look */
+    .bg-grid-pattern {
+        background-size: 60px 60px;
+        background-image:
+            linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px
+            );
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            black 40%,
+            transparent 100%
+        );
+    }
+
+    /* Text gradients */
+    .text-gradient-primary {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF007F] to-[#7D00FF];
+    }
+
+    .text-gradient-light {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60;
+    }
+
+    /* Pill shaped shiny button */
+    .btn-pill {
+        @apply inline-flex items-center justify-center rounded-full bg-white text-black font-semibold px-6 py-2.5 transition-all hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-[0.98];
+    }
+
+    .btn-pill-icon {
+        @apply ml-2 flex h-6 w-6 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-1;
+    }
+
+    /* Glassmorphic panels */
+    .glass-panel {
+        @apply bg-[#0A0A0C]/80 backdrop-blur-xl border border-white/5 shadow-2xl;
+    }
+
+    /* Animations */
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+        animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
+    }
+}
