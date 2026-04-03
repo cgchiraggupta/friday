@@ -6,6 +6,17 @@ AI-powered DeFi assistant for Stellar. Natural language interface for swaps, len
 
 Chat interface that translates user intent into Stellar transactions using DeepSeek's function calling. Built for the Stellar hackathon with production-ready architecture.
 
+## Documentation Map
+
+- `README.md` - project overview, setup, and usage
+- `WORKFLOW.md` - development workflow, git conventions, testing, and deployment flow
+- `docs/00_PROJECT_MASTER.md` - master project summary
+- `docs/01_TECH_STACK_AND_ARCHITECTURE.md` - technical architecture
+- `docs/02_FEATURES_AND_BUILDPLAN.md` - features and implementation plan
+- `docs/03_CODE_REFERENCE.md` - code reference
+- `docs/04_PITCH_AND_JUDGES.md` - pitch and judging notes
+- `docs/05_KIMI_PROMPTS.md` - prompt references
+
 ## Architecture
 
 Frontend (Next.js 14) -> API Route -> DeepSeek AI -> Tool Execution -> XDR Generation -> Freighter Signing
@@ -38,6 +49,17 @@ NEXT_PUBLIC_HORIZON_URL=https://horizon-testnet.stellar.org
 ### Development
 npm run dev
 http://localhost:3000
+
+## Workflow
+
+For the full engineering workflow, see `WORKFLOW.md`.
+
+It covers:
+- branch strategy and commit conventions
+- local development and testing flow
+- feature development checklist
+- debugging guidance
+- deployment and maintenance workflow
 
 ## Usage
 
@@ -102,7 +124,7 @@ src/
 - src/components/WalletConnect.tsx - Connection UI with status tracking
 
 ### Testing
-Type checking: npm run type-check
+Type checking: npm run typecheck
 Lint: npm run lint
 Build verification: npm run build
 
