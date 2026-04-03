@@ -18,13 +18,14 @@ import {
 
 // Configure DeepSeek instead of OpenAI
 // For testing without API key, use mock mode
-const TEST_MODE = process.env.DEEPSEEK_API_KEY === "test_key_for_now";
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+const TEST_MODE = DEEPSEEK_API_KEY === "test_key_for_now";
 
 let openai: OpenAI | undefined;
-if (!TEST_MODE) {
+if (DEEPSEEK_API_KEY && !TEST_MODE) {
   openai = new OpenAI({
     baseURL: "https://api.deepseek.com",
-    apiKey: process.env.DEEPSEEK_API_KEY,
+    apiKey: DEEPSEEK_API_KEY,
     timeout: 30000, // 30 second timeout
     maxRetries: 1,
   });
@@ -158,8 +159,9 @@ Current balances: ${balances ? JSON.stringify(balances) : "Unknown"}`;
     for (let iteration = 0; iteration < 5; iteration++) {
       if (!openai) {
         return NextResponse.json({
-          message:
-            "AI service not configured. Please add your DeepSeek API key to .env.local",
+          message: TEST_MODE
+            ? "AI service is running in test mode."
+            : "AI service not configured. Set DEEPSEEK_API_KEY in your environment.",
           pendingXDR: null,
           transactionDetails: null,
         });
@@ -374,4 +376,4 @@ Current balances: ${balances ? JSON.stringify(balances) : "Unknown"}`;
   }
 }
 
-export const runtime = "edge";
+export const runtime = "nodejs";

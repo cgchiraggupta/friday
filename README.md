@@ -45,10 +45,20 @@ npm install
 DEEPSEEK_API_KEY=sk-...
 NEXT_PUBLIC_STELLAR_NETWORK=TESTNET
 NEXT_PUBLIC_HORIZON_URL=https://horizon-testnet.stellar.org
+NEXT_PUBLIC_SOROBAN_RPC=https://soroban-testnet.stellar.org
+
+You can start from `.env.example` and copy the values into `.env.local`.
 
 ### Development
 npm run dev
 http://localhost:3000
+
+### Vercel
+Set these environment variables in the Vercel project settings before deploying:
+- `DEEPSEEK_API_KEY`
+- `NEXT_PUBLIC_STELLAR_NETWORK`
+- `NEXT_PUBLIC_HORIZON_URL`
+- `NEXT_PUBLIC_SOROBAN_RPC`
 
 ## Workflow
 

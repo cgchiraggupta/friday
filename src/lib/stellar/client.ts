@@ -1,9 +1,19 @@
 import { Horizon } from "@stellar/stellar-sdk";
 
+const STELLAR_NETWORK =
+  process.env.NEXT_PUBLIC_STELLAR_NETWORK?.toUpperCase() === "PUBLIC"
+    ? "PUBLIC"
+    : "TESTNET";
 const HORIZON_URL =
-  process.env.NEXT_PUBLIC_HORIZON_URL || "https://horizon-testnet.stellar.org";
+  process.env.NEXT_PUBLIC_HORIZON_URL ||
+  (STELLAR_NETWORK === "PUBLIC"
+    ? "https://horizon.stellar.org"
+    : "https://horizon-testnet.stellar.org");
 const SOROBAN_RPC_URL =
-  process.env.NEXT_PUBLIC_SOROBAN_RPC || "https://soroban-testnet.stellar.org";
+  process.env.NEXT_PUBLIC_SOROBAN_RPC ||
+  (STELLAR_NETWORK === "PUBLIC"
+    ? "https://mainnet.sorobanrpc.com"
+    : "https://soroban-testnet.stellar.org");
 
 export const horizonServer = new Horizon.Server(HORIZON_URL);
 
@@ -15,7 +25,7 @@ export const sorobanServer = {
 };
 
 export const NETWORK_PASSPHRASE =
-  process.env.NEXT_PUBLIC_STELLAR_NETWORK === "TESTNET"
+  STELLAR_NETWORK === "TESTNET"
     ? "Test SDF Network ; September 2015"
     : "Public Global Stellar Network ; September 2015";
 
@@ -37,7 +47,7 @@ export function getSorobanServer(): typeof sorobanServer {
  * Check if we're on testnet
  */
 export function isTestnet(): boolean {
-  return process.env.NEXT_PUBLIC_STELLAR_NETWORK === "TESTNET";
+  return STELLAR_NETWORK === "TESTNET";
 }
 
 /**
